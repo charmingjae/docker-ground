@@ -1,0 +1,16 @@
+# docker-compose version
+version: "${COMPOSE_VERSION}"
+
+# define services
+services:
+  # =============================================================
+  # mysql
+  # =============================================================
+  mysql:
+    container_name: mysql
+    build:
+      context: ./${REQUIREMENTS}/${DATABASE} # Location of dockerfile
+    environment: # Pass environment variable
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
