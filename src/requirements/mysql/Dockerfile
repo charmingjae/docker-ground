@@ -22,3 +22,4 @@ RUN chmod +x /tmp/mysql.sh
 
 # Entrypoint
 ENTRYPOINT ["/tmp/mysql.sh"]
+# CMD ["/usr/bin/mysqld"]

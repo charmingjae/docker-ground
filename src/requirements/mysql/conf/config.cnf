@@ -10,6 +10,7 @@
 skip-networking
 datadir=/var/lib/mysql
 user=mysql
+# log-error=/var/lib/mysql/mysql-error.log
 
 # Galera-related settings
 [galera]
