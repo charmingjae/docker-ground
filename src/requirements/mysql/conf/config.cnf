@@ -7,7 +7,7 @@
 
 # this is only for the mysqld standalone daemon
 [mysqld]
-skip-networking
+# skip-networking
 datadir=/var/lib/mysql
 user=mysql
 # log-error=/var/lib/mysql/mysql-error.log

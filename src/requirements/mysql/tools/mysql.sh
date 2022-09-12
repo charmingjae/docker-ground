@@ -45,14 +45,26 @@ FLUSH PRIVILEGES;
 EOF
 	fi
 
-	mysql < $tmpf
+	# Create user database and grant privileges
+	if [ ! -z ${MYSQL_DATABASE} ]; then
+		echo "[-] Create Database : ${MYSQL_DATABASE}"
+    	echo "CREATE DATABASE IF NOT EXISTS \`$MYSQL_DATABASE\` CHARACTER SET utf8 COLLATE utf8_general_ci;" >> $tmpf
+		if [ ! -z ${MYSQL_USER} ]; then
+			echo "[-] Create User <${MYSQL_USER}> with password <${MYSQL_PASSWORD}>";
+			echo "GRANT ALL ON \`$MYSQL_DATABASE\`.* to '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';" >> $tmpf
+			echo "GRANT ALL ON \`$MYSQL_DATABASE\`.* to '$MYSQL_USER'@'localhost' IDENTIFIED BY '$MYSQL_PASSWORD';" >> $tmpf
+		fi
+	fi
 
-	# rm -rf /var/lib/mysql/aria_log_control
+	# Adapt sql
+	mysql < $tmpf
+	# Delete sql file
+	rm -rf $tmpf
+
+	# Shutdown mysqladmin
 	mysqladmin -uroot -p${MYSQL_ROOT_PASSWORD} shutdown
 	# Run mysql demon
 	/usr/bin/mysqld
-
-
 fi
 
 exec "$@"
