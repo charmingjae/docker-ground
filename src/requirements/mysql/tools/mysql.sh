@@ -19,7 +19,6 @@ else
 	# Run mysql in the background
 	/usr/bin/mysqld_safe &
 
-
 	# Check MySQL server is now running
 	for n in `seq 1 42`
 	do
@@ -68,8 +67,8 @@ EOF
 
 	# Shutdown mysqladmin
 	mysqladmin -uroot -p${MYSQL_ROOT_PASSWORD} shutdown
-	# Run mysql demon
-	/usr/bin/mysqld
+
+	echo "[-] Finish construct database process"
 fi
 
 exec "$@"

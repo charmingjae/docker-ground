@@ -23,5 +23,8 @@ RUN chmod +x /tmp/mysql.sh
 # Alert open port
 EXPOSE 3306
 
+STOPSIGNAL SIGQUIT
+
 # Entrypoint
 ENTRYPOINT ["/tmp/mysql.sh"]
+CMD ["/usr/bin/mysqld"]
