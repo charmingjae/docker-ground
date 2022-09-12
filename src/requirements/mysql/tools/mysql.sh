@@ -3,8 +3,11 @@
 # set -x
 
 if [ -z ${MYSQL_ROOT_PASSWORD} ] || [ -z ${MYSQL_PASSWORD} ] || [ -z ${MYSQL_USER} ]; then
-	echo "MySQL basic data is not defined"
+	echo "[!] MySQL basic data is not defined"
+elif [ -d /var/lib/mysql/${MYSQL_DATABASE} ]; then
+	echo "[!] MySQL database ${MYSQL_DATABASE} is already created"
 else
+	echo "[-] Create MySQL database"
 	# Create error log
 	# touch /var/lib/mysql/mysql-error.log
 
@@ -16,15 +19,16 @@ else
 	# Run mysql in the background
 	/usr/bin/mysqld_safe &
 
+
 	# Check MySQL server is now running
 	for n in `seq 1 42`
 	do
 		mysqladmin ping > /dev/null 2>&1
 		if [ $? -eq 0 ]; then
-			echo "MySQL server is now running!"
+			echo "[-] MySQL server is now running!"
 			break
 		else
-			echo "$n : MySQL server is not running..."
+			echo "[!] $n : MySQL server is not running..."
 			if [ $n -eq 42 ]; then
 				exit 1
 			fi
@@ -53,6 +57,7 @@ EOF
 			echo "[-] Create User <${MYSQL_USER}> with password <${MYSQL_PASSWORD}>";
 			echo "GRANT ALL ON \`$MYSQL_DATABASE\`.* to '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';" >> $tmpf
 			echo "GRANT ALL ON \`$MYSQL_DATABASE\`.* to '$MYSQL_USER'@'localhost' IDENTIFIED BY '$MYSQL_PASSWORD';" >> $tmpf
+			echo "FLUSH PRIVILEGES;" >> $tmpf
 		fi
 	fi
 

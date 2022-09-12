@@ -20,6 +20,8 @@ COPY ./conf/config.cnf /etc/my.cnf.d/mariadb-server.cnf
 # Set script auth
 RUN chmod +x /tmp/mysql.sh
 
+# Alert open port
+EXPOSE 3306
+
 # Entrypoint
 ENTRYPOINT ["/tmp/mysql.sh"]
-# CMD ["/usr/bin/mysqld"]
