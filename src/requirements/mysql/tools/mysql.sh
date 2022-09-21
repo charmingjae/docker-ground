@@ -7,6 +7,9 @@ if [ -z ${MYSQL_ROOT_PASSWORD} ] || [ -z ${MYSQL_PASSWORD} ] || [ -z ${MYSQL_USE
 elif [ -d /var/lib/mysql/${MYSQL_DATABASE} ]; then
 	echo "[!] MySQL database ${MYSQL_DATABASE} is already created"
 else
+	# Create directory of backup sql
+	mkdir sql
+
 	echo "[-] Create MySQL database"
 	# Create error log
 	# touch /var/lib/mysql/mysql-error.log
@@ -57,6 +60,9 @@ EOF
 			echo "GRANT ALL ON \`$MYSQL_DATABASE\`.* to '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';" >> $tmpf
 			echo "GRANT ALL ON \`$MYSQL_DATABASE\`.* to '$MYSQL_USER'@'localhost' IDENTIFIED BY '$MYSQL_PASSWORD';" >> $tmpf
 			echo "FLUSH PRIVILEGES;" >> $tmpf
+			echo "use mojukcommunity;" >> $tmpf
+			echo "CREATE TABLE user (userID INT PRIMARY KEY, \
+					userPW VARCHAR(32) NOT NULL);" >> $tmpf
 		fi
 	fi
 

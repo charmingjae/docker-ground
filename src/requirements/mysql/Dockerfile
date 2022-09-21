@@ -16,6 +16,8 @@ RUN apk add mysql mysql-client && rm -f /var/cache/apk/*
 COPY ./tools/mysql.sh /tmp/mysql.sh
 # 01. Copy mysql configuration file.
 COPY ./conf/config.cnf /etc/my.cnf.d/mariadb-server.cnf
+# 02. Copy mysql backup script file.
+COPY ./tools/dbBackup.sh /dbBackup.sh
 
 # Set script auth
 RUN chmod +x /tmp/mysql.sh
