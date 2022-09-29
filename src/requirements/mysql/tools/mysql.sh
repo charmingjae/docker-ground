@@ -62,7 +62,15 @@ EOF
 			echo "FLUSH PRIVILEGES;" >> $tmpf
 			echo "use mojukcommunity;" >> $tmpf
 			echo "CREATE TABLE user (userID INT PRIMARY KEY, \
-					userPW VARCHAR(32) NOT NULL);" >> $tmpf
+					userPW VARCHAR(255) NOT NULL, \
+					userSalt VARCHAR(255) NOT NULL);" >> $tmpf
+			echo "FLUSH PRIVILEGES;" >> $tmpf
+			echo "CREATE TABLE board ( idx INT AUTO_INCREMENT PRIMARY KEY, \
+					publisher VARCHAR(255) NOT NULL, \
+					category VARCHAR(255) NOT NULL, \
+					theme VARCHAR(255) NOT NULL, \
+					contents TEXT NOT NULL);" >> $tmpf
+			echo "FLUSH PRIVILEGES;" >> $tmpf
 		fi
 	fi
 
