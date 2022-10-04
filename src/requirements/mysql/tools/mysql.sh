@@ -71,6 +71,11 @@ EOF
 					theme VARCHAR(255) NOT NULL, \
 					contents TEXT NOT NULL);" >> $tmpf
 			echo "FLUSH PRIVILEGES;" >> $tmpf
+			echo "CREATE TABLE comment ( idx INT AUTO_INCREMENT PRIMARY KEY, \
+					writer VARCHAR(255) NOT NULL, \
+					postID VARCHAR(255) NOT NULL, \
+					contents TEXT NOT NULL);" >> $tmpf
+			echo "FLUSH PRIVILEGES;" >> $tmpf
 		fi
 	fi
 
