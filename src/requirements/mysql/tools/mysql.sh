@@ -63,6 +63,7 @@ EOF
 			echo "use mojukcommunity;" >> $tmpf
 			echo "CREATE TABLE user (userID INT PRIMARY KEY, \
 					userPW VARCHAR(255) NOT NULL, \
+					userGit VARCHAR(255) NOT NULL, \
 					userSalt VARCHAR(255) NOT NULL);" >> $tmpf
 			echo "FLUSH PRIVILEGES;" >> $tmpf
 			echo "CREATE TABLE board ( idx INT AUTO_INCREMENT PRIMARY KEY, \
