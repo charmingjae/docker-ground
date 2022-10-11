@@ -78,6 +78,10 @@ EOF
 					postID VARCHAR(255) NOT NULL, \
 					contents TEXT NOT NULL);" >> $tmpf
 			echo "FLUSH PRIVILEGES;" >> $tmpf
+			echo "CREATE TABLE paper ( idx INT AUTO_INCREMENT PRIMARY KEY, \
+					publisher VARCHAR(255) NOT NULL, \
+					theme VARCHAR(255) NOT NULL);" >> $tmpf
+			echo "FLUSH PRIVILEGES;" >> $tmpf
 		fi
 	fi
 
