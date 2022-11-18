@@ -62,6 +62,7 @@ EOF
 			echo "FLUSH PRIVILEGES;" >> $tmpf
 			echo "use mojukcommunity;" >> $tmpf
 			echo "CREATE TABLE user (userID INT PRIMARY KEY, \
+					userName VARCHAR(255) NOT NULL, \
 					userPW VARCHAR(255) NOT NULL, \
 					userGit VARCHAR(255) NOT NULL, \
 					userPhone VARCHAR(255) NOT NULL, \
@@ -80,7 +81,13 @@ EOF
 			echo "FLUSH PRIVILEGES;" >> $tmpf
 			echo "CREATE TABLE paper ( idx INT AUTO_INCREMENT PRIMARY KEY, \
 					publisher VARCHAR(255) NOT NULL, \
-					theme VARCHAR(255) NOT NULL);" >> $tmpf
+					theme VARCHAR(255) NOT NULL, \
+					society TEXT NOT NULL, \
+					publishDate TEXT NOT NULL);" >> $tmpf
+			echo "FLUSH PRIVILEGES;" >> $tmpf
+			echo "CREATE TABLE publish ( idx INT AUTO_INCREMENT PRIMARY KEY, \
+					publisher VARCHAR(255) NOT NULL, \
+					paperName TEXT NOT NULL);" >> $tmpf
 			echo "FLUSH PRIVILEGES;" >> $tmpf
 		fi
 	fi
