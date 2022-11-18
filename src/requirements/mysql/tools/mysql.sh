@@ -65,6 +65,7 @@ EOF
 					userName VARCHAR(255) NOT NULL, \
 					userPW VARCHAR(255) NOT NULL, \
 					userGit VARCHAR(255) NOT NULL, \
+					userEmail VARCHAR(255) NOT NULL, \
 					userPhone VARCHAR(255) NOT NULL, \
 					userSalt VARCHAR(255) NOT NULL);" >> $tmpf
 			echo "FLUSH PRIVILEGES;" >> $tmpf
