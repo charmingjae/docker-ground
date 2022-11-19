@@ -89,7 +89,7 @@ EOF
 			echo "CREATE TABLE publish ( idx INT AUTO_INCREMENT PRIMARY KEY, \
 					publisher VARCHAR(255) NOT NULL, \
 					paperName TEXT NOT NULL);" >> $tmpf
-			echo "FLUSH PRIVILEGES;" >> $tmpf
+			# echo "FLUSH PRIVILEGES;" >> $tmpf
 		fi
 	fi
 
